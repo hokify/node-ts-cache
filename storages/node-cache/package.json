@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache-node-cache-storage",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple and extensible caching module supporting decorators",
   "main": "dist/index.js",
   "scripts": {
@@ -47,6 +47,5 @@
   "devDependencies": {
     "@hokify/node-ts-cache": "^4.0.0",
     "@types/node-cache": "^4.2.5"
-  },
-  "optionalDependencies": {}
+  }
 }

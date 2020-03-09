@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache-lru-storage",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple and extensible caching module supporting decorators",
   "main": "dist/index.js",
   "scripts": {
@@ -47,6 +47,5 @@
   },
   "devDependencies": {
     "@types/lru-cache": "^5.1.0"
-  },
-  "optionalDependencies": {}
+  }
 }
