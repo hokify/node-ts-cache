@@ -21,9 +21,6 @@
     "allowJs": false,
     "outDir": "./dist"
   },
-  "include": [
-    "src"
-  ],
   "compileOnSave": true
 }
 

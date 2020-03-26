@@ -6,7 +6,7 @@ node_modules
 **.tmp.txt
 npm-debug.log
 .git
-**/*.js
-**/*.js.map
 secret.json
 node-ts-cache*.tgz
+dist
+lerna-debug.log
