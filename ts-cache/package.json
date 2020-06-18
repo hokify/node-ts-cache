@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache",
-  "version": "5.1.6",
+  "version": "5.1.7",
   "description": "Simple and extensible caching module supporting decorators",
   "main": "dist/index.js",
   "publishConfig": {
@@ -41,7 +41,9 @@
     "dist"
   ],
   "author": "Simon Tretter <simon.tretter@hokify.com>",
-  "contributors": ["Himmet Avsar <avsar.himmet1@gmail.com>"],
+  "contributors": [
+    "Himmet Avsar <avsar.himmet1@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hokify/node-ts-cache/issues"
