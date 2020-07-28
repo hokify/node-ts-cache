@@ -51,8 +51,8 @@
     "ioredis": "^4.17.3"
   },
   "devDependencies": {
-    "@types/ioredis": "^4.16.6",
-    "ioredis-mock": "^4.21.1"
+    "@types/ioredis": "^4.17.2",
+    "ioredis-mock": "^4.21.2"
   },
   "gitHead": "179ca6def52cbf51e09fc22c09f7313d6356105b"
 }

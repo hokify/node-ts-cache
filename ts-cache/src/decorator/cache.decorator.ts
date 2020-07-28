@@ -24,6 +24,27 @@ export function Cache(
     descriptor.value = async function(...args: any[]) {
       const cacheKey = await keyStrategy.getKey(className, methodName, args);
 
+      const runMethod = async () => {
+        const methodCall = originalMethod.apply(this, args);
+
+        let methodResult;
+
+        const isAsync =
+            methodCall?.constructor?.name === "AsyncFunction" ||
+            methodCall?.constructor?.name === "Promise";
+        if (isAsync) {
+          methodResult = await methodCall;
+        } else {
+          methodResult = methodCall;
+        }
+        return methodResult;
+      }
+
+      if (!cacheKey) {
+        // do not cache this function, execute function
+        return await runMethod();
+      }
+
       if (!target.__cache_decarator_pending_results) {
         target.__cache_decarator_pending_results = {};
       }
@@ -44,18 +65,7 @@ export function Cache(
               );
             }
 
-            const methodCall = originalMethod.apply(this, args);
-
-            let methodResult;
-
-            const isAsync =
-              methodCall?.constructor?.name === "AsyncFunction" ||
-              methodCall?.constructor?.name === "Promise";
-            if (isAsync) {
-              methodResult = await methodCall;
-            } else {
-              methodResult = methodCall;
-            }
+            let methodResult = await runMethod();
 
             try {
               await cachingStrategy.setItem(cacheKey, methodResult, options);

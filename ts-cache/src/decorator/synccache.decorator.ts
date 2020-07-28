@@ -9,7 +9,7 @@ export function SyncCache(
   options?: any,
   keyStrategy: ISyncKeyStrategy = defaultKeyStrategy
 ): Function {
-  return function(
+  return function (
     target: Object,
     methodName: string,
     descriptor: PropertyDescriptor
@@ -17,8 +17,26 @@ export function SyncCache(
     const originalMethod = descriptor.value;
     const className = target.constructor.name;
 
-    descriptor.value = function(...args: any[]) {
+    descriptor.value = function (...args: any[]) {
+      const runMethod = () => {
+        const methodResult = originalMethod.apply(this, args);
+
+        const isAsync =
+          methodResult?.constructor?.name === "AsyncFunction" ||
+          methodResult?.constructor?.name === "Promise";
+
+        if (isAsync) {
+          throw new Error("async function detected, use @Cache instead");
+        }
+
+        return methodResult;
+      };
+
       const cacheKey = keyStrategy.getKey(className, methodName, args);
+
+      if (!cacheKey) {
+        return runMethod();
+      }
 
       try {
         const entry = cachingStrategy.getItem(cacheKey);
@@ -32,16 +50,7 @@ export function SyncCache(
           err
         );
       }
-
-      const methodResult = originalMethod.apply(this, args);
-
-      const isAsync =
-        methodResult?.constructor?.name === "AsyncFunction" ||
-        methodResult?.constructor?.name === "Promise";
-
-      if (isAsync) {
-        throw new Error("async function detected, use @Cache instead");
-      }
+      const methodResult = runMethod();
 
       try {
         cachingStrategy.setItem(cacheKey, methodResult, options);

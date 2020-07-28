@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/node-cache#readme",
   "dependencies": {
-    "node-cache": "^5.1.1"
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "@hokify/node-ts-cache": "^5.1.7",

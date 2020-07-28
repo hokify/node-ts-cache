@@ -3,15 +3,15 @@ interface ISyncKeyStrategy {
     className: string,
     methodName: string,
     args: any[]
-  ): string;
+  ): string | undefined;
 }
 
 interface IAsyncKeyStrategy {
   getKey(
-      className: string,
-      methodName: string,
-      args: any[]
-  ): Promise<string> | string;
+    className: string,
+    methodName: string,
+    args: any[]
+  ): Promise<string | undefined> | string | undefined;
 }
 
 export { IAsyncKeyStrategy, ISyncKeyStrategy };

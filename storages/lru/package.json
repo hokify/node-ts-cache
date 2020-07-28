@@ -46,7 +46,7 @@
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/lru#readme",
   "dependencies": {
     "@hokify/node-ts-cache": "^5.1.7",
-    "lru-cache": "^5.1.1"
+    "lru-cache": "^6.0.0"
   },
   "devDependencies": {
     "@types/lru-cache": "^5.1.0"
