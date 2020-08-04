@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.2.0...@hokify/node-ts-cache-redisio-storage@1.2.1) (2020-08-04)
+
+
+### Bug Fixes
+
+* **redisiio:** pass in redis fct ([c3a5c2b](https://github.com/hokify/node-ts-cache/commit/c3a5c2bc639fb3fc98597aa0d8707c79c3f6f992))
+
+
+
+
+
 # [1.2.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.1.7...@hokify/node-ts-cache-redisio-storage@1.2.0) (2020-07-28)
 
 
