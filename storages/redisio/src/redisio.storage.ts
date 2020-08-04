@@ -2,13 +2,10 @@ import { AsynchronousCacheType } from "@hokify/node-ts-cache";
 import * as Redis from "ioredis";
 
 export class RedisIOStorage implements AsynchronousCacheType {
-  constructor(
-    redisOptions: Redis.RedisOptions,
-    private client = new Redis(redisOptions)
-  ) {}
+  constructor(private redis: () => Redis.Redis) {}
 
   public async getItem<T>(key: string): Promise<T | undefined> {
-    const entry: any = await this.client.get(key);
+    const entry: any = await this.redis().get(key);
     let finalItem = entry;
     try {
       finalItem = JSON.parse(entry);
@@ -20,13 +17,13 @@ export class RedisIOStorage implements AsynchronousCacheType {
     if (typeof content === "object") {
       content = JSON.stringify(content);
     } else if (content === undefined) {
-      await this.client.del(key);
+      await this.redis().del(key);
       return;
     }
-    await this.client.set(key, content);
+    await this.redis().set(key, content);
   }
 
   public async clear(): Promise<void> {
-    await this.client.flushdb();
+    await this.redis().flushdb();
   }
 }
