@@ -54,5 +54,5 @@
     "@types/ioredis": "^4.17.2",
     "ioredis-mock": "^4.21.2"
   },
-  "gitHead": "179ca6def52cbf51e09fc22c09f7313d6356105b"
+  "gitHead": "7d2e5b85914c7a6e54edad434b0fcbae37c484b4"
 }

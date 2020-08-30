@@ -10,7 +10,7 @@ const MockedRedis = new RedisMock({
   password: "pass"
 });
 
-const storage = new RedisIOStorage({}, MockedRedis);
+const storage = new RedisIOStorage(() => MockedRedis);
 
 describe("RedisIOStorage", () => {
   it("Should clear Redis without errors", async () => {

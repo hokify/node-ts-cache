@@ -36,10 +36,10 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
     return localCache || undefined;
   }
 
-  public async setItem(key: string, content: any): Promise<void> {
+  public async setItem(key: string, content: any, options?: { ttl?: number }): Promise<void> {
     this.myCache.set(key, content);
     if (this.options?.maxAge) {
-      await this.redis().setex(key, this.options.maxAge, JSON.stringify(content));
+      await this.redis().setex(key, options?.ttl || this.options.maxAge, JSON.stringify(content));
     } else {
       await this.redis().set(key, JSON.stringify(content));
     }

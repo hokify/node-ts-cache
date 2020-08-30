@@ -13,14 +13,18 @@ export class RedisIOStorage implements AsynchronousCacheType {
     return finalItem || undefined;
   }
 
-  public async setItem(key: string, content: any): Promise<void> {
+  public async setItem(key: string, content: any, options?: { ttl?: number }): Promise<void> {
     if (typeof content === "object") {
       content = JSON.stringify(content);
     } else if (content === undefined) {
       await this.redis().del(key);
       return;
     }
-    await this.redis().set(key, content);
+    if (options?.ttl) {
+      await this.redis().setex(key, options.ttl, content);
+    } else {
+      await this.redis().set(key, content);
+    }
   }
 
   public async clear(): Promise<void> {
