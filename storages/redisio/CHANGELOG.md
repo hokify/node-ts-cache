@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.2.1...@hokify/node-ts-cache-redisio-storage@1.2.2) (2020-08-30)
+
+
+### Bug Fixes
+
+* **ttl:** allow overwriting ttls ([ff24982](https://github.com/hokify/node-ts-cache/commit/ff249827995bac6942c5492ac343702b60ec5b76))
+
+
+
+
+
 ## [1.2.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.2.0...@hokify/node-ts-cache-redisio-storage@1.2.1) (2020-08-04)
 
 
