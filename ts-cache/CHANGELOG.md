@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.2.0...@hokify/node-ts-cache@5.2.1) (2020-09-22)
+
+
+### Bug Fixes
+
+* cache null and false values when it is the return value ([f86539a](https://github.com/hokify/node-ts-cache/commit/f86539a1608a68af3f46e8747de71f35a3ebf016))
+
+
+
+
+
 # [5.2.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.1.7...@hokify/node-ts-cache@5.2.0) (2020-07-28)
 
 

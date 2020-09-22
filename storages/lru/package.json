@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache-lru-storage",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/lru#readme",
   "dependencies": {
-    "@hokify/node-ts-cache": "^5.2.0",
+    "@hokify/node-ts-cache": "^5.2.1",
     "lru-cache": "^6.0.0"
   },
   "devDependencies": {
