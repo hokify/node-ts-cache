@@ -40,7 +40,7 @@ export function SyncCache(
 
       try {
         const entry = cachingStrategy.getItem(cacheKey);
-        if (entry) {
+        if (entry !== undefined) {
           return entry;
         }
       } catch (err) {

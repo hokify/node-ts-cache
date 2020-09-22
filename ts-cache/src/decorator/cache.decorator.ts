@@ -54,7 +54,7 @@ export function Cache(
           try {
             try {
               const entry = await (cachingStrategy.getItem as any)(cacheKey);
-              if (entry) {
+              if (entry !== undefined) {
                 return entry;
               }
             } catch (err) {
