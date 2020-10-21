@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2019",
     "declaration": true,
     "strict": true,
     "module": "commonjs",
@@ -14,7 +14,7 @@
     "noUnusedParameters": true,
     "emitDecoratorMetadata": true,
     "lib": [
-      "es2015"
+      "es2019"
     ],
     "sourceMap": true,
     "experimentalDecorators": true,
