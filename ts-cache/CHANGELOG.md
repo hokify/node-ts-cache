@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.3.1...@hokify/node-ts-cache@5.3.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **multicache:** fix async storages and do not save redisio undefined ([79e1e95](https://github.com/hokify/node-ts-cache/commit/79e1e957a08359c262cdddd07e1181e70890399e))
+
+
+
+
+
 ## [5.3.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.3.0...@hokify/node-ts-cache@5.3.1) (2020-10-21)
 
 
