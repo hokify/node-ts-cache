@@ -9,7 +9,6 @@ Simple and extensible caching module supporting decorators
 
 <!-- TOC depthTo:2 -->
 
-- [node-ts-cache](#with-decorator)
 - [Install](#install)
 - [Usage](#usage)
   - [With decorator](#with-decorator)
@@ -24,7 +23,7 @@ Simple and extensible caching module supporting decorators
 # Install
 
 ```bash
-npm install --save node-ts-cache
+npm install --save @ħokify/node-ts-cache
 ```
 
 # Usage
@@ -89,10 +88,11 @@ different input paramters and still cache each variation.
 
 E.g.
 ```ts
-import { MultiCache, ExpirationStrategy, MemoryStorage } from "@hokify/node-ts-cache"; 
+import { MultiCache } from "@hokify/node-ts-cache";
+import NodeCacheStorage from '@hokify/node-ts-cache-node-cache-storage'; 
 import RedisIOStorage from '@hokify/node-ts-cache-redisio-storage';
 
-const localStrategy = new MemoryStorage();
+const localStrategy = new NodeCacheStorage();
 const centralStrategy = new RedisIOStorage({/*..*/});
 
 class MyService {
