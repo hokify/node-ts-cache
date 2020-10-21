@@ -16,6 +16,10 @@
     "prepare": "tsc -p .",
     "dev": "tsc -p . -w"
   },
+  "devDependencies": {
+    "ioredis-mock": "^4.21.8",
+    "ioredis": "^4.17.3"
+  },
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
