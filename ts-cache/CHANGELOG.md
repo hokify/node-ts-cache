@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.3.0...@hokify/node-ts-cache@5.3.1) (2020-10-21)
+
+
+### Bug Fixes
+
+* export multicache ([5e91b9c](https://github.com/hokify/node-ts-cache/commit/5e91b9c7c0a3e4f65c6a91fe4e62e8b646f0d509))
+
+
+
+
+
 # [5.3.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.2.2...@hokify/node-ts-cache@5.3.0) (2020-10-21)
 
 
