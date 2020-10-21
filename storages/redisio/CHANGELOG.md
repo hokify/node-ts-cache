@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.2.4...@hokify/node-ts-cache-redisio-storage@1.3.0) (2020-10-21)
+
+
+### Features
+
+* **multicache:** allow caching multiple keys at once ([68315b3](https://github.com/hokify/node-ts-cache/commit/68315b3c73f65a62a60ffe5e21921bbd2ea471a6))
+
+
+
+
+
 ## [1.2.4](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.2.3...@hokify/node-ts-cache-redisio-storage@1.2.4) (2020-10-21)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-redisio-storage

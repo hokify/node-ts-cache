@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redis-storage@1.2.2...@hokify/node-ts-cache-redis-storage@1.2.3) (2020-10-21)
+
+**Note:** Version bump only for package @hokify/node-ts-cache-redis-storage
+
+
+
+
+
 ## [1.2.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redis-storage@1.2.1...@hokify/node-ts-cache-redis-storage@1.2.2) (2020-10-21)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-redis-storage

@@ -3,12 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.3.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-redis-storage@0.2.3...@hokify/node-ts-cache-lru-redis-storage@0.3.0) (2020-10-21)
+## 0.0.2 (2020-10-21)
 
-
-### Features
-
-* **multicache:** allow caching multiple keys at once ([68315b3](https://github.com/hokify/node-ts-cache/commit/68315b3c73f65a62a60ffe5e21921bbd2ea471a6))
+**Note:** Version bump only for package @hokify/node-ts-cache-lru-redis-multi-storage
 
 
 
