@@ -6,7 +6,12 @@ import * as Redis from "ioredis";
 
 export class RedisIOStorage
   implements AsynchronousCacheType, MultiAsynchronousCacheType {
-  constructor(private redis: () => Redis.Redis) {}
+  constructor(
+    private redis: () => Redis.Redis,
+    private options: {
+      maxAge?: number;
+    } = { maxAge: 86400 }
+  ) {}
 
   async getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }> {
     return Object.fromEntries(
@@ -19,8 +24,18 @@ export class RedisIOStorage
 
   async setItems(
     values: { key: string; content: any }[],
+    options?: { ttl?: number }
   ): Promise<void> {
-    await this.redis().mset(values)
+    const redisPipeline = this.redis().pipeline();
+    values.forEach((val) => {
+      const ttl = options?.ttl ?? this.options?.maxAge;
+      if (ttl) {
+        redisPipeline.setex(val.key, ttl, val.content);
+      } else {
+        redisPipeline.set(val.key, val.content);
+      }
+    });
+    await redisPipeline.exec();
   }
 
   public async getItem<T>(key: string): Promise<T | undefined> {
@@ -43,8 +58,9 @@ export class RedisIOStorage
       await this.redis().del(key);
       return;
     }
-    if (options?.ttl) {
-      await this.redis().setex(key, options.ttl, content);
+    const ttl = options?.ttl ?? this.options?.maxAge;
+    if (ttl) {
+      await this.redis().setex(key, ttl, content);
     } else {
       await this.redis().set(key, content);
     }
