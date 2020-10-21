@@ -9,7 +9,7 @@ Simple and extensible caching module supporting decorators
 
 <!-- TOC depthTo:2 -->
 
-- [node-ts-cache](#node-ts-cache)
+- [node-ts-cache](#with-decorator)
 - [Install](#install)
 - [Usage](#usage)
   - [With decorator](#with-decorator)
@@ -35,10 +35,14 @@ Caches function response using the given options. Works with different strategie
 
 `@Cache(strategy, options)`
 
-- `strategy`: A supported caching [Strategy](#strategies)
+Standard method to cache an async method.
+
+- `strategy`: A supported caching [Strategy](#strategies) (Async)
 - `options`: Options passed to the strategy for this particular method
 
 _Note: @Cache always converts the method response to a promise because caching might be async._
+
+E.g.
 
 ```ts
 import { Cache, ExpirationStrategy, MemoryStorage } from "@hokify/node-ts-cache";
@@ -52,6 +56,64 @@ class MyService {
   }
 }
 ```
+
+`@SyncCache(strategy, options)`
+Method to use only sync caches. This allows you to use caching without a promise function.
+ 
+- `strategy`: A supported caching [Strategy](#strategies) (Sync)
+- `options`: Options passed to the strategy for this particular method
+
+E.g.
+
+```ts
+import { SyncCache, ExpirationStrategy, MemoryStorage } from "@hokify/node-ts-cache";
+
+const myStrategy = new ExpirationStrategy(new MemoryStorage());
+
+class MyService {
+  @SyncCache(myStrategy, { ttl: 60 })
+  public getUsers(): string[] {
+    return ["Max", "User"];
+  }
+}
+```
+
+`@MultiCache(strategy, parameterIndex, cacheKey, options)`
+This method uses multi get and multi set of the cache providers if supported and therefore can use
+different input paramters and still cache each variation.
+
+- `strategies`: A list of caching [Strategy](#strategies), which is handled by provided order
+- `parameterIndex`: The parameter index of the array
+- `cacheKey`: a custom cache key function for each element of the cache
+- `options`: Options passed to the strategy for this particular method
+
+E.g.
+```ts
+import { MultiCache, ExpirationStrategy, MemoryStorage } from "@hokify/node-ts-cache"; 
+import RedisIOStorage from '@hokify/node-ts-cache-redisio-storage';
+
+const localStrategy = new MemoryStorage();
+const centralStrategy = new RedisIOStorage({/*..*/});
+
+class MyService {
+  @MultiCache([localStrategy, centralStrategy], 0)
+  public getUserNames(userIds: string[]): Promise<string>[] {
+    return getUserNamesFromDatabase(userIds); // beware: return same order and number of userIds -> name
+        // e.g. 1,2,3 .. shoudl return [userName1, userName2, userName3] (or null for entries that do not exist)
+        // if you return undefined (instead of null) for one entry, it is queried the next time again. 
+  }
+}
+
+const a = new MyService();
+/**
+* this call checks local cache if it has user id1, 2 or 3..
+* all cache misses are then checked by the central cache
+* if there are still some missing entries, they are retrieved with the original getUsers method.
+*/
+const result = await a.getUsers([1,2,3]);
+
+```
+
 
 Cache decorator generates cache key according to class name, class method and args (with JSON.stringify).
 If you want another key creation logic you can bypass key creation strategy to the Cache decorator.
