@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-redis-storage@0.2.2...@hokify/node-ts-cache-lru-redis-storage@0.2.3) (2020-10-21)
+
+
+### Bug Fixes
+
+* **lru-redis:** allow null values ([efbe6bf](https://github.com/hokify/node-ts-cache/commit/efbe6bfdf1af6ca649bceaae2f2da4722d8dd742))
+
+
+
+
+
 ## [0.2.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-redis-storage@0.2.1...@hokify/node-ts-cache-lru-redis-storage@0.2.2) (2020-09-22)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-lru-redis-storage

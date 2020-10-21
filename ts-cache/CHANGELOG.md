@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.2.1...@hokify/node-ts-cache@5.2.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* allow setting DISABLE_CACHE_DECORATOR for easier debugging ([f39a92c](https://github.com/hokify/node-ts-cache/commit/f39a92c8ab630a71cd09b81452c743d305705a09))
+
+
+
+
+
 ## [5.2.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.2.0...@hokify/node-ts-cache@5.2.1) (2020-09-22)
 
 
