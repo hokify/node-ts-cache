@@ -7,6 +7,7 @@
     "publish": "lerna publish",
     "build": "lerna run build",
     "test": "lerna run test",
+    "release": "lerna publish",
     "prepublishOnly": "npm run test",
     "check-package-updates": "ncu -u && gulp updatePackages"
   },
