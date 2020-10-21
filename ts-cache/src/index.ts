@@ -1,6 +1,8 @@
 export {
   SynchronousCacheType,
-  AsynchronousCacheType
+  AsynchronousCacheType,
+  MultiAsynchronousCacheType,
+  MultiSynchronousCacheType,
 } from "./types/cache.types";
 export { ExpirationStrategy } from "./strategy/caching/expiration.strategy";
 export { ISyncKeyStrategy } from "./types/key.strategy.types";

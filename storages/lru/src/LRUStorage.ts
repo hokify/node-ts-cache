@@ -1,12 +1,26 @@
-import { SynchronousCacheType } from "@hokify/node-ts-cache";
+import {
+  MultiSynchronousCacheType,
+  SynchronousCacheType,
+} from "@hokify/node-ts-cache";
 
 import * as LRU from "lru-cache";
 
-export class LRUStorage implements SynchronousCacheType {
+export class LRUStorage
+  implements SynchronousCacheType, MultiSynchronousCacheType {
   myCache: LRU<string, any>;
 
   constructor(private options: LRU.Options<string, any>) {
     this.myCache = new LRU(options);
+  }
+
+  getItems<T>(keys: string[]): { [key: string]: T | undefined } {
+    return Object.fromEntries(keys.map((key) => [key, this.myCache.get(key)]));
+  }
+
+  setItems(values: { key: string; content: any }[]): void {
+    values.forEach((val) => {
+      this.myCache.set(val.key, val.content);
+    });
   }
 
   public getItem<T>(key: string): T | undefined {
