@@ -17,11 +17,11 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
     // check local cache
     let localCache = this.myCache.get(key);
 
-    if (!localCache) {
+    if (localCache === undefined) {
       // check central cache
       localCache = await this.redis().get(key);
 
-      if (localCache) {
+      if (localCache !== undefined) {
         try {
           localCache = JSON.parse(localCache);
         } catch (err) {
@@ -33,7 +33,7 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
       }
     }
 
-    return localCache || undefined;
+    return localCache ?? undefined;
   }
 
   public async setItem(key: string, content: any, options?: { ttl?: number }): Promise<void> {
