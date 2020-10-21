@@ -40,7 +40,7 @@ export function Cache(
         return methodResult;
       }
 
-      if (!cacheKey) {
+      if (!cacheKey || process.env.DISABLE_CACHE_DECORATOR) {
         // do not cache this function, execute function
         return await runMethod();
       }
