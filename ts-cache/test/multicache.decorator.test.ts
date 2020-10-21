@@ -1,27 +1,45 @@
 //import * as Assert from "assert";
-import {MultiCache} from "../src/decorator/multicache.decorator";
-import {LRUStorage} from "../../storages/lru/src/LRUStorage";
-import {NodeCacheStorage} from "../../storages/node-cache/src/node-cache.storage";
+import { MultiCache } from "../src/decorator/multicache.decorator";
+import { LRUStorage } from "../../storages/lru/src/LRUStorage";
 
-const storage = new LRUStorage({});
-const storage2 = new NodeCacheStorage({});
+const canonicalLRUStrategy = new LRUStorage({});
 
-// const data = ["user", "max", "test"];
+// @ts-ignore
+import * as RedisMock from "ioredis-mock";
+import { RedisIOStorage } from "../../storages/redisio/src/redisio.storage";
 
-storage2.setItem('TestClassOne:cachedCall:"elem3":[["elem1","elem2","elem3"]]', 'STORAGE2');
-storage.setItem('TestClassOne:cachedCall:"elem2":[["elem1","elem2","elem3"]]', 'STORAGE1');
+const MockedRedis = new RedisMock({
+  host: "host",
+  port: 123,
+  password: "pass",
+});
+const canonicalRedisStrategy = new RedisIOStorage(() => MockedRedis);
 
 class TestClassOne {
   callCount = 0;
 
-  @MultiCache([storage, storage2], 0/*, {
-    getKey(className: string, methodName: string, parameter: any, args: any): string {
-      return 'canonical:' + parameter +
-    }
-  }*/)
-  public cachedCall(param0: string[]): string[] {
-    console.log('called with', param0);
-    return param0.map(p => p + 'RETURN VALUE');
+  @MultiCache([canonicalLRUStrategy,canonicalRedisStrategy], 0, {
+    getKey(
+      _className: string,
+      _methodName: string,
+      parameter: any,
+      args: any
+    ): string {
+      // args[1] = geoRegion
+      return `{canonicalurl:${args[1].toUpperCase()}}:${parameter.pageType}:${
+        parameter.path
+      }:${process.env.NODE_ENV || "local"}`;
+    },
+  })
+  public async getCanonicalUrlsFromCache(
+    urls: { path: string; pageType: any }[],
+    geoRegion: string
+  ): Promise<string[]> {
+
+    console.log("getCanonicalUrlsFromCache", urls, geoRegion);
+    return urls.map((p) => {
+      return p.path + "RETURN VALUE" + geoRegion
+    });
   }
 }
 
@@ -34,10 +52,24 @@ describe("MultiCacheDecorator", () => {
   it("Should multi cache", async () => {
     const myClass = new TestClassOne();
     // call 1
-    const call1= await myClass.cachedCall(['elem1', 'elem2', 'elem3']);
-    console.log('CALL1', call1);
+    const call1 = await myClass.getCanonicalUrlsFromCache(
+      [
+        { path: "elem1", pageType: "x" },
+        { path: "elem2", pageType: "x" },
+        { path: "elem3", pageType: "x" },
+      ],
+      "at"
+    );
+    console.log("CALL RESULT 1", call1);
 
-    const call2= await myClass.cachedCall(['elem1', 'elem2', 'elem3']);
-    console.log('CALL2', call2);
+    const call2 = await myClass.getCanonicalUrlsFromCache(
+      [
+        { path: "elem1", pageType: "x" },
+         { path: "elem2", pageType: "x" },
+         { path: "elem3", pageType: "x" },
+      ],
+      "at"
+    );
+    console.log("CALL RESULT 2", call2);
   });
 });

@@ -51,18 +51,20 @@ export function MultiCache(
       };
 
       const parameters = args[parameterIndex];
-      const cacheKeys: (string| undefined)[] = parameters.map((parameter: any) => {
-        return keyStrategy.getKey(className, methodName, parameter, args);
-      });
+      const cacheKeys: (string | undefined)[] = parameters.map(
+        (parameter: any) => {
+          return keyStrategy.getKey(className, methodName, parameter, args);
+        }
+      );
 
       let result: any[] = [];
       if (!process.env.DISABLE_CACHE_DECORATOR) {
         let currentCachingStrategy = 0;
         do {
           // console.log('cacheKeys', cacheKeys, currentCachingStrategy)
-          const foundEntries = ((await cachingStrategies[
+          const foundEntries = await (cachingStrategies[
             currentCachingStrategy
-          ]) as any).getItems(cacheKeys.filter(key => key !== undefined));
+          ] as any).getItems(cacheKeys.filter((key) => key !== undefined));
 
           // console.log('foundEntries', foundEntries);
 
@@ -74,16 +76,19 @@ export function MultiCache(
           });
           // save back to strategies before this strategy
           if (currentCachingStrategy > 0) {
-            const setCache =
-                Object.keys(foundEntries).map((key) => ({
-                  key,
-                  content: foundEntries[key],
-                })).filter(f => f.content !== undefined);
+            const setCache = Object.keys(foundEntries)
+              .map((key) => ({
+                key,
+                content: foundEntries[key],
+              }))
+              .filter((f) => f.content !== undefined);
 
             if (setCache.length > 0) {
               let saveCurrentCachingStrategy = currentCachingStrategy - 1;
               do {
-                await cachingStrategies[saveCurrentCachingStrategy].setItems(setCache);
+                await cachingStrategies[saveCurrentCachingStrategy].setItems(
+                  setCache
+                );
 
                 saveCurrentCachingStrategy--;
               } while (saveCurrentCachingStrategy >= 0);
@@ -92,24 +97,29 @@ export function MultiCache(
 
           // save to final result
 
-          result = [...result, ...Object.values(foundEntries).filter(f => f !== undefined)];
+          result = [
+            ...result,
+            ...Object.values(foundEntries).filter((f) => f !== undefined),
+          ];
           // console.log('result', result);
 
           currentCachingStrategy++;
         } while (
-          cacheKeys.filter(key => key !== undefined).length > 0 &&
+          cacheKeys.filter((key) => key !== undefined).length > 0 &&
           currentCachingStrategy < cachingStrategies.length
         );
       }
 
-      if (cacheKeys.filter(key => key !== undefined).length > 0) {
+      if (cacheKeys.filter((key) => key !== undefined).length > 0) {
         // use original method to resolve them
-        const missingKeys = cacheKeys.map((key, i) => {
-          if (key !== undefined) {
-            return parameters[i]
-          }
-          return undefined;
-        }).filter(k => k !== undefined);
+        const missingKeys = cacheKeys
+          .map((key, i) => {
+            if (key !== undefined) {
+              return parameters[i];
+            }
+            return undefined;
+          })
+          .filter((k) => k !== undefined);
 
         const originalMethodResult: any[] = await runMethod(missingKeys);
         if (originalMethodResult.length !== missingKeys.length) {
@@ -124,19 +134,25 @@ export function MultiCache(
         // console.log('originalMethodResult', originalMethodResult);
         if (!process.env.DISABLE_CACHE_DECORATOR) {
           // save back to all caching strategies
-          const saveToCache =
-              originalMethodResult.map((content, i) => {
-                return {
-                  key: keyStrategy.getKey(className, methodName, missingKeys[i], args),
-                  content,
-                }
-              });
+          const saveToCache = originalMethodResult.map((content, i) => {
+            return {
+              key: keyStrategy.getKey(
+                className,
+                methodName,
+                missingKeys[i],
+                args
+              ),
+              content,
+            };
+          });
 
           // console.log('saveToCache', saveToCache);
 
           let saveCurrentCachingStrategy = cachingStrategies.length - 1;
           do {
-            await cachingStrategies[saveCurrentCachingStrategy].setItems(saveToCache);
+            await cachingStrategies[saveCurrentCachingStrategy].setItems(
+              saveToCache
+            );
 
             saveCurrentCachingStrategy--;
           } while (saveCurrentCachingStrategy >= 0);

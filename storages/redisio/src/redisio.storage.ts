@@ -14,12 +14,25 @@ export class RedisIOStorage
   ) {}
 
   async getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }> {
-    return Object.fromEntries(
-      (await this.redis().mget(keys)).map((result, i) => [
-        keys[i],
-        ((result && JSON.parse(result)) ?? undefined) as T | undefined,
-      ])
+    const res = Object.fromEntries(
+      (await this.redis().mget(...keys)).map((entry, i) => {
+        if (entry === null) {
+          return [keys[i], undefined]; // value does not exist yet
+        }
+
+        if (entry === '') {
+          return [keys[i], null as any]; // value does exist, but is empty
+        }
+
+        let finalItem = entry;
+        try {
+          finalItem = entry && JSON.parse(entry);
+        } catch (error) {}
+
+        return [keys[i], finalItem];
+      })
     );
+    return res;
   }
 
   async setItems(
@@ -28,11 +41,13 @@ export class RedisIOStorage
   ): Promise<void> {
     const redisPipeline = this.redis().pipeline();
     values.forEach((val) => {
+      if (val.content === undefined) return;
+
       const ttl = options?.ttl ?? this.options?.maxAge;
       if (ttl) {
-        redisPipeline.setex(val.key, ttl, val.content);
+        redisPipeline.setex(val.key, ttl, JSON.stringify(val.content));
       } else {
-        redisPipeline.set(val.key, val.content);
+        redisPipeline.set(val.key, JSON.stringify(val.content));
       }
     });
     await redisPipeline.exec();
@@ -40,11 +55,17 @@ export class RedisIOStorage
 
   public async getItem<T>(key: string): Promise<T | undefined> {
     const entry: any = await this.redis().get(key);
+    if (entry === null) {
+      return undefined;
+    }
+    if (entry === '') {
+      return null as any;
+    }
     let finalItem = entry;
     try {
       finalItem = JSON.parse(entry);
     } catch (error) {}
-    return finalItem || undefined;
+    return finalItem;
   }
 
   public async setItem(
