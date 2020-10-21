@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.3.1...@hokify/node-ts-cache-redisio-storage@1.3.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **redios:** ttl and pipeline ([6f2ae66](https://github.com/hokify/node-ts-cache/commit/6f2ae665f2ce9a30eb938fa5d7698efee4f2e3c1))
+
+
+
+
+
 ## [1.3.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.3.0...@hokify/node-ts-cache-redisio-storage@1.3.1) (2020-10-21)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-redisio-storage
