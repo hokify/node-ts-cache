@@ -13,6 +13,12 @@ export class RedisIOStorage
     } = { maxAge: 86400 }
   ) {}
 
+  private errorHandler: ((error: Error) => void) | undefined;
+
+  onError(listener: (error: Error) => void) {
+    this.errorHandler = listener;
+  }
+
   async getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }> {
     const res = Object.fromEntries(
       (await this.redis().mget(...keys)).map((entry, i) => {
@@ -50,7 +56,14 @@ export class RedisIOStorage
         redisPipeline.set(val.key, JSON.stringify(val.content));
       }
     });
-    await redisPipeline.exec();
+    const savePromise = redisPipeline.exec();
+
+    if (this.errorHandler) {
+      // if we have an error handler, we do not need to await the result
+      savePromise.catch(err => this.errorHandler && this.errorHandler(err));
+    } else {
+      await savePromise
+    }
   }
 
   public async getItem<T>(key: string): Promise<T | undefined> {
@@ -80,10 +93,17 @@ export class RedisIOStorage
       return;
     }
     const ttl = options?.ttl ?? this.options?.maxAge;
+    let savePromise: Promise<any>;
     if (ttl) {
-      await this.redis().setex(key, ttl, content);
+      savePromise = this.redis().setex(key, ttl, content);
     } else {
-      await this.redis().set(key, content);
+      savePromise = this.redis().set(key, content);
+    }
+    if (this.errorHandler) {
+      // if we have an error handler, we do not need to await the result
+      savePromise.catch(err => this.errorHandler && this.errorHandler(err));
+    } else {
+      await savePromise
     }
   }
 
