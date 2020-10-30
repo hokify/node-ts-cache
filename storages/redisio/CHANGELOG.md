@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.3.3...@hokify/node-ts-cache-redisio-storage@1.4.0) (2020-10-30)
+
+
+### Features
+
+* **redisio:** allow background savings when an error handler is set ([04fa32a](https://github.com/hokify/node-ts-cache/commit/04fa32add51d6b3cedb02fee88a3ef6c112eb187))
+
+
+
+
+
 ## [1.3.3](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.3.2...@hokify/node-ts-cache-redisio-storage@1.3.3) (2020-10-21)
 
 
