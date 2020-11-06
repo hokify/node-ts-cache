@@ -4,13 +4,19 @@ import * as LRU from "lru-cache";
 import * as Redis from "ioredis";
 
 export class LRUWithRedisStorage implements AsynchronousCacheType {
-  myCache: LRU<string, any>;
+  private myCache: LRU<string, any>;
+  private options:  LRU.Options<string, any>;
 
   constructor(
-    private options: LRU.Options<string, any>,
+    options: LRU.Options<string, any>,
     private redis: () => Redis.Redis
   ) {
-    this.myCache = new LRU(options);
+    this.options = {
+      max: 500,
+      maxAge: 86400,
+      ...options
+    }
+    this.myCache = new LRU(this.options);
   }
 
   public async getItem<T>(key: string): Promise<T | undefined> {
