@@ -5,7 +5,8 @@ const defaultKeyStrategy = {
     className: string,
     methodName: string,
     parameter: any,
-    args: any
+    args: any,
+    _phase: 'read' | 'write'
   ): string {
     return `${className}:${methodName}:${JSON.stringify(
       parameter
@@ -53,7 +54,7 @@ export function MultiCache(
       const parameters = args[parameterIndex];
       const cacheKeys: (string | undefined)[] = parameters.map(
         (parameter: any) => {
-          return keyStrategy.getKey(className, methodName, parameter, args);
+          return keyStrategy.getKey(className, methodName, parameter, args, 'read');
         }
       );
 
@@ -68,7 +69,7 @@ export function MultiCache(
 
           // console.log('foundEntries', foundEntries);
 
-          // remove all foudn entries from cacheKeys
+          // remove all found entries from cacheKeys
           Object.keys(foundEntries).forEach((entry) => {
             if (foundEntries[entry] === undefined) return;
             // remove entry from cacheKey
@@ -140,7 +141,8 @@ export function MultiCache(
                 className,
                 methodName,
                 missingKeys[i],
-                args
+                args,
+                'write'
               ),
               content,
             };

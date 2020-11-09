@@ -23,7 +23,8 @@ class TestClassOne {
       _className: string,
       _methodName: string,
       parameter: any,
-      args: any
+      args: any,
+      _phase: 'read' | 'write'
     ): string {
       // args[1] = geoRegion
       return `{canonicalurl:${args[1].toUpperCase()}}:${parameter.pageType}:${
