@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redis-storage@1.2.6...@hokify/node-ts-cache-redis-storage@1.2.7) (2020-11-09)
+
+
+### Bug Fixes
+
+* **multicache:** handle get key undefined ([b0ded49](https://github.com/hokify/node-ts-cache/commit/b0ded498ad988a44ff62566909403268e4b6b288))
+
+
+
+
+
 ## [1.2.6](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redis-storage@1.2.5...@hokify/node-ts-cache-redis-storage@1.2.6) (2020-11-09)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-redis-storage

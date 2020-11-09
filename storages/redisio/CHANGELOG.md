@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.4.1...@hokify/node-ts-cache-redisio-storage@1.4.2) (2020-11-09)
+
+
+### Bug Fixes
+
+* **multicache:** handle get key undefined ([b0ded49](https://github.com/hokify/node-ts-cache/commit/b0ded498ad988a44ff62566909403268e4b6b288))
+
+
+
+
+
 ## [1.4.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.4.0...@hokify/node-ts-cache-redisio-storage@1.4.1) (2020-11-09)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-redisio-storage
