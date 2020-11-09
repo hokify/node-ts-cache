@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.3.2...@hokify/node-ts-cache@5.4.0) (2020-11-09)
+
+
+### Features
+
+* pass in current phase (read or write) to multicache get key method ([5726a10](https://github.com/hokify/node-ts-cache/commit/5726a10da141db71d49ce3b8c5963b261e0ef961))
+
+
+
+
+
 ## [5.3.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.3.1...@hokify/node-ts-cache@5.3.2) (2020-10-21)
 
 
