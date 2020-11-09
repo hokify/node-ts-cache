@@ -7,7 +7,7 @@ const defaultKeyStrategy = {
     parameter: any,
     args: any,
     _phase: 'read' | 'write'
-  ): string {
+  ): string | undefined {
     return `${className}:${methodName}:${JSON.stringify(
       parameter
     )}:${JSON.stringify(args)}`;
@@ -136,17 +136,22 @@ export function MultiCache(
         if (!process.env.DISABLE_CACHE_DECORATOR) {
           // save back to all caching strategies
           const saveToCache = originalMethodResult.map((content, i) => {
-            return {
-              key: keyStrategy.getKey(
+            const key = keyStrategy.getKey(
                 className,
                 methodName,
                 missingKeys[i],
                 args,
                 'write'
-              ),
+            );
+            if (key === undefined) {
+              return undefined;
+            }
+
+            return {
+              key,
               content,
             };
-          });
+          }).filter(f => f !== undefined) as {key: string; content: any}[]
 
           // console.log('saveToCache', saveToCache);
 
