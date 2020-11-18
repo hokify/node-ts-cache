@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-storage@1.3.4...@hokify/node-ts-cache-lru-storage@1.3.5) (2020-11-18)
+
+
+### Bug Fixes
+
+* ensure we use seconds everywhere ([f18d460](https://github.com/hokify/node-ts-cache/commit/f18d460a8a1f195ca58a92c56c5d3cc7d216b6d9))
+
+
+
+
+
 ## [1.3.4](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-storage@1.3.3...@hokify/node-ts-cache-lru-storage@1.3.4) (2020-11-09)
 
 

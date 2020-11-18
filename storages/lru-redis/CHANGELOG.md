@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-redis-storage@0.3.5...@hokify/node-ts-cache-lru-redis-storage@0.3.6) (2020-11-18)
+
+
+### Bug Fixes
+
+* ensure we use seconds everywhere ([f18d460](https://github.com/hokify/node-ts-cache/commit/f18d460a8a1f195ca58a92c56c5d3cc7d216b6d9))
+
+
+
+
+
 ## [0.3.5](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-redis-storage@0.3.4...@hokify/node-ts-cache-lru-redis-storage@0.3.5) (2020-11-09)
 
 
