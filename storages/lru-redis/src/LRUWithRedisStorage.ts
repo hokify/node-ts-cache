@@ -5,6 +5,7 @@ import * as Redis from "ioredis";
 
 export class LRUWithRedisStorage implements AsynchronousCacheType {
   private myCache: LRU<string, any>;
+  /** maxAge and ttl in seconds! */
   private options:  LRU.Options<string, any>;
 
   constructor(
@@ -16,7 +17,10 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
       maxAge: 86400,
       ...options
     }
-    this.myCache = new LRU(this.options);
+    this.myCache = new LRU({
+      ...this.options,
+      maxAge: (this.options.maxAge || 86400) * 1000 // in ms
+    });
   }
 
   public async getItem<T>(key: string): Promise<T | undefined> {
@@ -42,6 +46,7 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
     return localCache ?? undefined;
   }
 
+  /** ttl in seconds! */
   public async setItem(key: string, content: any, options?: { ttl?: number }): Promise<void> {
     this.myCache.set(key, content);
     if (this.options?.maxAge) {
@@ -53,6 +58,9 @@ export class LRUWithRedisStorage implements AsynchronousCacheType {
 
   public async clear(): Promise<void> {
     // flush not supported, recreate local lru cache instance
-    this.myCache = new LRU(this.options);
+    this.myCache = new LRU({
+      ...this.options,
+      maxAge: (this.options.maxAge || 86400) * 1000 // in ms
+    });
   }
 }

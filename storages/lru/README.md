@@ -10,3 +10,5 @@ import LRUStorage from 'node-ts-cache-lru-storage';
 
 const myStrategy = new ExpirationStrategy(new LRUStorage());
 ```
+
+all timeout values are in SECONDS

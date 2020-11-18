@@ -9,8 +9,13 @@ export class LRUStorage
   implements SynchronousCacheType, MultiSynchronousCacheType {
   myCache: LRU<string, any>;
 
-  constructor(private options: LRU.Options<string, any>) {
-    this.myCache = new LRU(options);
+  constructor(
+    /** maxAge in seconds! */ private options: LRU.Options<string, any>
+  ) {
+    this.myCache = new LRU({
+      ...options,
+      maxAge: options.maxAge ? options.maxAge * 1000 : undefined,
+    });
   }
 
   getItems<T>(keys: string[]): { [key: string]: T | undefined } {
@@ -33,6 +38,9 @@ export class LRUStorage
 
   public clear(): void {
     // flush not supported, recreate lru cache instance
-    this.myCache = new LRU(this.options);
+    this.myCache = new LRU({
+      ...this.options,
+      maxAge: this.options.maxAge ? this.options.maxAge * 1000 : undefined, // in ms
+    });
   }
 }

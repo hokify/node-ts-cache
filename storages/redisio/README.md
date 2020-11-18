@@ -7,3 +7,5 @@ import RedisIOStorage from 'node-ts-cache-redisio-storage';
 
 const myStrategy = new ExpirationStrategy(new RedisIOStorage());
 ```
+
+all timeout values are in SECONDS
