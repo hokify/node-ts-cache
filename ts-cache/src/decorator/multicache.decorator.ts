@@ -11,7 +11,7 @@ const defaultKeyStrategy = {
     return `${className}:${methodName}:${JSON.stringify(
       parameter
     )}:${JSON.stringify(args)}`;
-  },
+  }
 };
 
 export function MultiCache(

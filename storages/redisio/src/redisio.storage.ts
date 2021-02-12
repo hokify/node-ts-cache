@@ -3,13 +3,15 @@ import {
   MultiAsynchronousCacheType,
 } from "@hokify/node-ts-cache";
 import * as Redis from "ioredis";
+import * as snappy from "snappy";
 
 export class RedisIOStorage
   implements AsynchronousCacheType, MultiAsynchronousCacheType {
   constructor(
     private redis: () => Redis.Redis,
     private options: {
-      maxAge?: number;
+      maxAge: number;
+      compress?: boolean;
     } = { maxAge: 86400 }
   ) {}
 
@@ -20,23 +22,31 @@ export class RedisIOStorage
   }
 
   async getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }> {
+      const mget = this.options.compress ? await (this.redis() as any).mgetBuffer(...keys) : await this.redis().mget(...keys);
     const res = Object.fromEntries(
-      (await this.redis().mget(...keys)).map((entry, i) => {
+      await Promise.all(mget.map(async (entry: Buffer | string, i: number) => {
         if (entry === null) {
           return [keys[i], undefined]; // value does not exist yet
         }
 
-        if (entry === '') {
+        if (entry === "") {
           return [keys[i], null as any]; // value does exist, but is empty
         }
 
-        let finalItem = entry;
+        let finalItem: string = entry && this.options.compress
+            ? await new Promise((resolve, reject) =>
+                snappy.uncompress(entry as any, {}, (err, uncompressed) =>
+                    err ? reject(err) : resolve(uncompressed as any)
+                )
+            )
+            : entry as string;
+
         try {
-          finalItem = entry && JSON.parse(entry);
+          finalItem = finalItem && JSON.parse(finalItem);
         } catch (error) {}
 
         return [keys[i], finalItem];
-      })
+      }))
     );
     return res;
   }
@@ -46,37 +56,56 @@ export class RedisIOStorage
     options?: { ttl?: number }
   ): Promise<void> {
     const redisPipeline = this.redis().pipeline();
-    values.forEach((val) => {
-      if (val.content === undefined) return;
+    await Promise.all(
+      values.map(async (val) => {
+        if (val.content === undefined) return;
 
-      const ttl = options?.ttl ?? this.options?.maxAge;
-      if (ttl) {
-        redisPipeline.setex(val.key, ttl, JSON.stringify(val.content));
-      } else {
-        redisPipeline.set(val.key, JSON.stringify(val.content));
-      }
-    });
+        let content: string | Buffer = JSON.stringify(val.content);
+
+        if (this.options.compress) {
+          content = await new Promise((resolve, reject) =>
+            snappy.compress(content, (err, compressed) =>
+              err ? reject(err) : resolve(compressed)
+            )
+          );
+        }
+
+        const ttl = options?.ttl ?? this.options.maxAge;
+        if (ttl) {
+          redisPipeline.setex(val.key, ttl, content);
+        } else {
+          redisPipeline.set(val.key, content);
+        }
+      })
+    );
     const savePromise = redisPipeline.exec();
 
     if (this.errorHandler) {
       // if we have an error handler, we do not need to await the result
-      savePromise.catch(err => this.errorHandler && this.errorHandler(err));
+      savePromise.catch((err) => this.errorHandler && this.errorHandler(err));
     } else {
-      await savePromise
+      await savePromise;
     }
   }
 
   public async getItem<T>(key: string): Promise<T | undefined> {
-    const entry: any = await this.redis().get(key);
+    const entry: any = this.options.compress ? await this.redis().getBuffer(key) : await this.redis().get(key);
     if (entry === null) {
       return undefined;
     }
-    if (entry === '') {
+    if (entry === "") {
       return null as any;
     }
-    let finalItem = entry;
+    let finalItem: T | undefined = this.options.compress
+      ? await new Promise((resolve, reject) =>
+          snappy.uncompress(entry, {}, (err, uncompressed) =>
+            err ? reject(err) : resolve(uncompressed?.toString() as any)
+          )
+        )
+      : entry;
+
     try {
-      finalItem = JSON.parse(entry);
+      finalItem = JSON.parse(finalItem as any);
     } catch (error) {}
     return finalItem;
   }
@@ -92,7 +121,16 @@ export class RedisIOStorage
       await this.redis().del(key);
       return;
     }
-    const ttl = options?.ttl ?? this.options?.maxAge;
+
+    if (this.options.compress) {
+      content = await new Promise((resolve, reject) =>
+        snappy.compress(content, (err, compressed) =>
+          err ? reject(err) : resolve(compressed)
+        )
+      );
+    }
+
+    const ttl = options?.ttl ?? this.options.maxAge;
     let savePromise: Promise<any>;
     if (ttl) {
       savePromise = this.redis().setex(key, ttl, content);
@@ -101,9 +139,9 @@ export class RedisIOStorage
     }
     if (this.errorHandler) {
       // if we have an error handler, we do not need to await the result
-      savePromise.catch(err => this.errorHandler && this.errorHandler(err));
+      savePromise.catch((err) => this.errorHandler && this.errorHandler(err));
     } else {
-      await savePromise
+      await savePromise;
     }
   }
 

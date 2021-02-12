@@ -48,7 +48,8 @@
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/redisio#readme",
   "dependencies": {
     "@hokify/node-ts-cache": "^5.4.1",
-    "ioredis": "^4.17.3"
+    "ioredis": "^4.17.3",
+    "snappy": "^6.3.5"
   },
   "devDependencies": {
     "@types/ioredis": "^4.17.6",
