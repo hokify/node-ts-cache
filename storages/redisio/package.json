@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache-redisio-storage",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/redisio#readme",
   "dependencies": {
-    "@hokify/node-ts-cache": "^5.5.0",
+    "@hokify/node-ts-cache": "^5.5.1",
     "ioredis": "^4.22.0",
     "snappy": "^6.3.5"
   },

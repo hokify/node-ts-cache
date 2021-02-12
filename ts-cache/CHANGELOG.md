@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.1](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.5.0...@hokify/node-ts-cache@5.5.1) (2021-02-12)
+
+**Note:** Version bump only for package @hokify/node-ts-cache
+
+
+
+
+
 # [5.5.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache@5.4.1...@hokify/node-ts-cache@5.5.0) (2021-02-12)
 
 
