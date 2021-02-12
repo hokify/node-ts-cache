@@ -1,13 +1,7 @@
-import { ISyncKeyStrategy } from "../../index";
+import { ISyncKeyStrategy } from '../../types/key.strategy.types';
 
-class JSONStringifyKeyStrategy implements ISyncKeyStrategy {
-  public getKey(
-    className: string,
-    methodName: string,
-    args: any[]
-  ): string {
-    return `${className}:${methodName}:${JSON.stringify(args)}`;
-  }
+export class JSONStringifyKeyStrategy implements ISyncKeyStrategy {
+	public getKey(className: string, methodName: string, args: any[]): string {
+		return `${className}:${methodName}:${JSON.stringify(args)}`;
+	}
 }
-
-export { JSONStringifyKeyStrategy };

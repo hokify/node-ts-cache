@@ -12,6 +12,7 @@
     "check-package-updates": "ncu -u && gulp updatePackages"
   },
   "devDependencies": {
+    "@hokify/eslint-config": "^0.5.10",
     "@types/mocha": "8.0.3",
     "@types/node": "14.14.0",
     "lerna": "^3.22.1",

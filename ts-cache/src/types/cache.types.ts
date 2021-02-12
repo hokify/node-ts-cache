@@ -1,42 +1,36 @@
 interface ICacheEntry {
-  content: any;
-  meta: any;
+	content: any;
+	meta: any;
 }
 
-export interface MultiAsynchronousCacheType<C = ICacheEntry> {
-  getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }>;
+export interface IMultiIAsynchronousCacheType<C = ICacheEntry> {
+	getItems<T>(keys: string[]): Promise<{ [key: string]: T | undefined }>;
 
-  setItems(
-    values: { key: string; content: C | undefined }[],
-    options?: any
-  ): Promise<void>;
+	setItems(values: { key: string; content: C | undefined }[], options?: any): Promise<void>;
 
-  clear(): Promise<void>;
+	clear(): Promise<void>;
 }
 
-export interface MultiSynchronousCacheType<C = ICacheEntry> {
-  getItems<T>(keys: string[]): { [key: string]: T | undefined };
+export interface IMultiSynchronousCacheType<C = ICacheEntry> {
+	getItems<T>(keys: string[]): { [key: string]: T | undefined };
 
-  setItems(
-    values: { key: string; content: C | undefined }[],
-    options?: any
-  ): void;
+	setItems(values: { key: string; content: C | undefined }[], options?: any): void;
 
-  clear(): void;
+	clear(): void;
 }
 
-export interface AsynchronousCacheType<C = ICacheEntry> {
-  getItem<T>(key: string): Promise<T | undefined>;
+export interface IAsynchronousCacheType<C = ICacheEntry> {
+	getItem<T>(key: string): Promise<T | undefined>;
 
-  setItem(key: string, content: C | undefined, options?: any): Promise<void>;
+	setItem(key: string, content: C | undefined, options?: any): Promise<void>;
 
-  clear(): Promise<void>;
+	clear(): Promise<void>;
 }
 
-export interface SynchronousCacheType<C = ICacheEntry> {
-  getItem<T>(key: string): T | undefined;
+export interface ISynchronousCacheType<C = ICacheEntry> {
+	getItem<T>(key: string): T | undefined;
 
-  setItem(key: string, content: C | undefined, options?: any): void;
+	setItem(key: string, content: C | undefined, options?: any): void;
 
-  clear(): void;
+	clear(): void;
 }

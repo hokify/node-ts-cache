@@ -1,1 +1,1 @@
-export { LRUWithRedisStorage as default } from "./LRUWithRedisStorage";
+export { LRUWithRedisStorage as default } from './LRUWithRedisStorage';

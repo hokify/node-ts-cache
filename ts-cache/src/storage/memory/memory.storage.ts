@@ -1,19 +1,17 @@
-import { SynchronousCacheType} from "../../types/cache.types";
+import { ISynchronousCacheType } from '../../types/cache.types';
 
-export class MemoryStorage implements SynchronousCacheType {
-  private memCache: any = {};
+export class MemoryStorage implements ISynchronousCacheType {
+	private memCache: any = {};
 
-  constructor() {}
+	public getItem<T>(key: string): T | undefined {
+		return this.memCache[key];
+	}
 
-  public getItem<T>(key: string): T | undefined {
-    return this.memCache[key];
-  }
+	public setItem(key: string, content: any): void {
+		this.memCache[key] = content;
+	}
 
-  public setItem(key: string, content: any): void {
-    this.memCache[key] = content;
-  }
-
-  public clear(): void {
-    this.memCache = {};
-  }
+	public clear(): void {
+		this.memCache = {};
+	}
 }
