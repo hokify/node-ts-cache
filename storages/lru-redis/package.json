@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache-lru-redis-storage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/lru-redis#readme",
   "dependencies": {
-    "@hokify/node-ts-cache": "^5.4.1",
+    "@hokify/node-ts-cache": "^5.5.0",
     "ioredis": "^4.22.0",
     "lru-cache": "^6.0.0"
   },

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.4.2...@hokify/node-ts-cache-redisio-storage@1.5.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* ensure we use seconds everywhere ([f18d460](https://github.com/hokify/node-ts-cache/commit/f18d460a8a1f195ca58a92c56c5d3cc7d216b6d9))
+
+
+### Features
+
+* **redisio:** snappy compression ([21d8dc9](https://github.com/hokify/node-ts-cache/commit/21d8dc96fc5eb563d6a13e7d74925e8c0702038e))
+
+
+
+
+
 ## [1.4.2](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-redisio-storage@1.4.1...@hokify/node-ts-cache-redisio-storage@1.4.2) (2020-11-09)
 
 

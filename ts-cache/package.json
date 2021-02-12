@@ -1,6 +1,6 @@
 {
   "name": "@hokify/node-ts-cache",
-  "version": "5.4.1",
+  "version": "5.5.0",
   "description": "Simple and extensible caching module supporting decorators",
   "main": "dist/index.js",
   "publishConfig": {
