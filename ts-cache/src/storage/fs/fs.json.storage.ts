@@ -27,7 +27,7 @@ export class FsJsonStorage implements IAsynchronousCacheType {
 	}
 
 	private async setCache(newCache: any): Promise<void> {
-		await new Promise((resolve, reject) =>
+		await new Promise<void>((resolve, reject) =>
 			writeFile(this.jsonFilePath, JSON.stringify(newCache), err => {
 				if (err) {
 					reject(err);

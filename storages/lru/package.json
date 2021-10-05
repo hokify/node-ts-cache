@@ -49,7 +49,7 @@
     "lru-cache": "^6.0.0"
   },
   "devDependencies": {
-    "@types/lru-cache": "^5.1.0"
+    "@types/lru-cache": "^5.1.1"
   },
   "gitHead": "c938eba762060f940a34bc192bec03bc76ea4017"
 }

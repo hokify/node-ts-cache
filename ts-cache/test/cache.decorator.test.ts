@@ -250,7 +250,7 @@ describe("CacheDecorator", () => {
 
     try {
       await myClass.throwError();
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.stack);
     }
   });
@@ -260,7 +260,7 @@ describe("CacheDecorator", () => {
 
     try {
       await myClass.throwErrorNoCache();
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.stack);
     }
   });
@@ -270,7 +270,7 @@ describe("CacheDecorator", () => {
 
     try {
       await myClass.throwErrorPlain();
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.stack);
     }
   });

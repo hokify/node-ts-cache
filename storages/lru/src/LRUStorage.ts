@@ -1,4 +1,4 @@
-import { IMultiSynchronousCacheType, ISynchronousCacheType } from '@hokify/node-ts-cache';
+import type { IMultiSynchronousCacheType, ISynchronousCacheType } from '@hokify/node-ts-cache';
 
 import * as LRU from 'lru-cache';
 

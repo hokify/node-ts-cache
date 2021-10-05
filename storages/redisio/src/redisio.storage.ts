@@ -51,18 +51,12 @@ export class RedisIOStorage implements IAsynchronousCacheType, IMultiIAsynchrono
 	}
 
 	async compress(uncompressed: string): Promise<Buffer> {
-		const result = await new Promise<Buffer>((resolve, reject) =>
-			snappy.compress(uncompressed, (err, compressed) => (err ? reject(err) : resolve(compressed)))
-		);
+		const result = await snappy.compress(uncompressed);
 		return result;
 	}
 
 	async uncompress(compressed: Buffer): Promise<string> {
-		const result = await new Promise<string>((resolve, reject) =>
-			snappy.uncompress(compressed, {}, (err, uncompressed) =>
-				err ? reject(err) : resolve(uncompressed as string)
-			)
-		);
+		const result = await snappy.uncompress(compressed, { asBuffer: false });
 
 		return result;
 	}
@@ -118,7 +112,7 @@ export class RedisIOStorage implements IAsynchronousCacheType, IMultiIAsynchrono
 		} catch (error) {
 			/** ignore */
 		}
-		return (finalItem as unknown) as T;
+		return finalItem as unknown as T;
 	}
 
 	public async setItem(key: string, content: unknown, options?: { ttl?: number }): Promise<void> {
