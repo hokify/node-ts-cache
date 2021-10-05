@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-storage@1.3.7...@hokify/node-ts-cache-lru-storage@1.4.0) (2021-10-05)
+
+**Note:** Version bump only for package @hokify/node-ts-cache-lru-storage
+
+
+
+
+
 ## [1.3.7](https://github.com/hokify/node-ts-cache/compare/@hokify/node-ts-cache-lru-storage@1.3.6...@hokify/node-ts-cache-lru-storage@1.3.7) (2021-02-12)
 
 **Note:** Version bump only for package @hokify/node-ts-cache-lru-storage
