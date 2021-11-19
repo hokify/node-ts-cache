@@ -1,9 +1,9 @@
 import * as Assert from "assert";
-import LRURedisStorage from "../src";
+import LRURedisStorage from "../src/index.js";
 
 
 // @ts-ignore
-import * as RedisMock from "ioredis-mock";
+import RedisMock from "ioredis-mock";
 
 const MockedRedis = new RedisMock({
   host: "host",

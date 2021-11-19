@@ -1,1 +1,3 @@
-export { LRUStorage as default } from './LRUStorage';
+import { LRUStorage } from './LRUStorage.js';
+
+export default LRUStorage;

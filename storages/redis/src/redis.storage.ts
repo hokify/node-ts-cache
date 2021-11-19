@@ -1,6 +1,6 @@
 import { IAsynchronousCacheType } from '@hokify/node-ts-cache';
 
-import * as Bluebird from 'bluebird';
+import Bluebird from 'bluebird';
 import * as Redis from 'redis';
 import { ClientOpts } from 'redis';
 import { IRedisClient } from './custom';
@@ -11,8 +11,9 @@ Bluebird.promisifyAll(Redis.Multi.prototype);
 export class RedisStorage implements IAsynchronousCacheType {
 	private client: IRedisClient;
 
-	constructor(private redisOptions: ClientOpts) {
-		this.client = Redis.createClient(this.redisOptions) as IRedisClient;
+	constructor(private redisOptions: ClientOpts, redis = Redis) {
+		this.client = redis.createClient(this.redisOptions) as IRedisClient;
+		console.log('this.client', this.client);
 	}
 
 	public async getItem<T>(key: string): Promise<T> {

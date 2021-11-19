@@ -1,6 +1,6 @@
 import type { ISynchronousCacheType, IMultiSynchronousCacheType } from '@hokify/node-ts-cache';
 
-import * as NodeCache from 'node-cache';
+import NodeCache from 'node-cache';
 
 export class NodeCacheStorage implements ISynchronousCacheType, IMultiSynchronousCacheType {
 	myCache: NodeCache;

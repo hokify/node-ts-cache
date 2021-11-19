@@ -8,7 +8,7 @@ task('cleanModules', function() {
 });
 
 task('cleanTmp', function() {
-	return del(['./ts-cacche/.tmp', './storages/*/.tmp']);
+	return del(['./ts-cache/.tmp', './storages/*/.tmp']);
 });
 
 task('cleanDist', function() {

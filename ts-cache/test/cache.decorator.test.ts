@@ -1,7 +1,7 @@
 import * as Assert from "assert";
-import { Cache, ExpirationStrategy, ISyncKeyStrategy } from "../src";
-import { MemoryStorage } from "../src/storage/memory";
-import { IAsyncKeyStrategy } from "../src/types/key.strategy.types";
+import { Cache, ExpirationStrategy, ISyncKeyStrategy } from "../src/index.js";
+import { MemoryStorage } from "../src/storage/memory/index.js";
+import { IAsyncKeyStrategy } from "../src/types/key.strategy.types.js";
 
 const storage = new MemoryStorage();
 const strategy = new ExpirationStrategy(storage);

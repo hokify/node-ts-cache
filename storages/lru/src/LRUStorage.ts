@@ -1,6 +1,6 @@
 import type { IMultiSynchronousCacheType, ISynchronousCacheType } from '@hokify/node-ts-cache';
 
-import * as LRU from 'lru-cache';
+import LRU from 'lru-cache';
 
 export class LRUStorage implements ISynchronousCacheType, IMultiSynchronousCacheType {
 	myCache: LRU<string, any>;

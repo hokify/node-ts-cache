@@ -1,5 +1,5 @@
 import * as Assert from "assert";
-import LRUStorage from "../src";
+import LRUStorage from "../src/index.js";
 
 const storage = new LRUStorage({});
 

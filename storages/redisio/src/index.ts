@@ -1,1 +1,3 @@
-export { RedisIOStorage as default } from './redisio.storage';
+import { RedisIOStorage } from './redisio.storage.js';
+
+export default RedisIOStorage;

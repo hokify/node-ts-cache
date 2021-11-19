@@ -1,6 +1,6 @@
 import { IAsynchronousCacheType } from '@hokify/node-ts-cache';
 
-import * as LRU from 'lru-cache';
+import LRU from 'lru-cache';
 import * as Redis from 'ioredis';
 
 export class LRUWithRedisStorage implements IAsynchronousCacheType {

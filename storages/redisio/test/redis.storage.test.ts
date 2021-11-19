@@ -1,9 +1,9 @@
 import * as Assert from "assert";
-import RedisIOStorage from "../src";
+import RedisIOStorage from "../src/index.js";
 import * as snappy from "snappy";
 
 // @ts-ignore
-import * as RedisMock from "ioredis-mock";
+import RedisMock from "ioredis-mock";
 
 const MockedRedis = new RedisMock({
   host: "host",

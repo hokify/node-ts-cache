@@ -4,10 +4,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "description": "Simple and extensible caching module supporting decorators",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "test": "mocha --loader=ts-node/esm test/**/*.test.ts",
     "build": "tsc -p .",
     "prepublishOnly": "tsc -p .",
     "clean": "git clean -fdx src",

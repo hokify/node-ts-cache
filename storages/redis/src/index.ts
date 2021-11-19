@@ -1,1 +1,3 @@
-export { RedisStorage as default } from './redis.storage';
+import { RedisStorage } from './redis.storage.js';
+
+export default RedisStorage;

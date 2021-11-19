@@ -1,4 +1,4 @@
-import { AbstractBaseStrategy } from './abstract.base.strategy';
+import { AbstractBaseStrategy } from './abstract.base.strategy.js';
 
 interface IExpiringCacheItem {
 	content: any;

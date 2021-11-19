@@ -1,5 +1,5 @@
 import { existsSync, writeFileSync, writeFile, readFile } from 'fs';
-import { IAsynchronousCacheType } from '../../types/cache.types';
+import { IAsynchronousCacheType } from '../../types/cache.types.js';
 
 export class FsJsonStorage implements IAsynchronousCacheType {
 	constructor(public jsonFilePath: string) {

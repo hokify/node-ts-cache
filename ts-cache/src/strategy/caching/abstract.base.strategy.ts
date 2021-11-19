@@ -1,4 +1,4 @@
-import { IAsynchronousCacheType, ISynchronousCacheType } from '../../types/cache.types';
+import { IAsynchronousCacheType, ISynchronousCacheType } from '../../types/cache.types.js';
 
 export abstract class AbstractBaseStrategy implements IAsynchronousCacheType {
 	constructor(protected storage: IAsynchronousCacheType | ISynchronousCacheType) {}

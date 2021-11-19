@@ -1,5 +1,5 @@
 import * as Assert from "assert";
-import NodeCacheStorage from "../src";
+import NodeCacheStorage from "../src/index.js";
 
 const storage = new NodeCacheStorage({});
 

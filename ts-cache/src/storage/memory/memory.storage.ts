@@ -1,4 +1,4 @@
-import { ISynchronousCacheType } from '../../types/cache.types';
+import { ISynchronousCacheType } from '../../types/cache.types.js';
 
 export class MemoryStorage implements ISynchronousCacheType {
 	private memCache: any = {};

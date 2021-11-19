@@ -1,6 +1,6 @@
-import { JSONStringifyKeyStrategy } from '../strategy/key/json.stringify.strategy';
-import { ISyncKeyStrategy } from '../types/key.strategy.types';
-import { ISynchronousCacheType } from '../types/cache.types';
+import { JSONStringifyKeyStrategy } from '../strategy/key/json.stringify.strategy.js';
+import { ISyncKeyStrategy } from '../types/key.strategy.types.js';
+import { ISynchronousCacheType } from '../types/cache.types.js';
 
 const defaultKeyStrategy = new JSONStringifyKeyStrategy();
 

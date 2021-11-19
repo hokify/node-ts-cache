@@ -1,1 +1,3 @@
-export { LRUWithRedisStorage as default } from './LRUWithRedisStorage';
+import { LRUWithRedisStorage } from './LRUWithRedisStorage.js';
+
+export default LRUWithRedisStorage;

@@ -1,1 +1,3 @@
-export { NodeCacheStorage as default } from './node-cache.storage';
+import { NodeCacheStorage } from './node-cache.storage.js';
+
+export default NodeCacheStorage;

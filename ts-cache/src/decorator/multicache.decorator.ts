@@ -1,4 +1,4 @@
-import { IMultiIAsynchronousCacheType, IMultiSynchronousCacheType } from '../types/cache.types';
+import { IMultiIAsynchronousCacheType, IMultiSynchronousCacheType } from '../types/cache.types.js';
 
 const defaultKeyStrategy = {
 	getKey(
