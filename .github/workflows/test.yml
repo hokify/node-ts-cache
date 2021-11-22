@@ -33,7 +33,7 @@ jobs:
       - name: Install Packages
         run: npm ci
 
-      - name: Test
+      - name: Build
         run: npm run build
 
       - name: Test
