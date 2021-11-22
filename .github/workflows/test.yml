@@ -31,7 +31,7 @@ jobs:
         run: npm -g install npm@latest
 
       - name: Install Packages
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
