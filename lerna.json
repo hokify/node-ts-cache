@@ -9,7 +9,7 @@
 			"message": "chore(release): publish"
 		}
 	},
-	"hoist": false,
+	"hoist": true,
 	"forceLocal": true,
 	"conventionalCommits": true,
 	"reject-cycles": true,

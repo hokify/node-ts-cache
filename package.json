@@ -1,29 +1,31 @@
 {
-  "name": "root",
-  "private": true,
-  "scripts": {
-    "bootstrap": "lerna bootstrap --force-local",
-    "postinstall": "npm run bootstrap",
-    "publish": "lerna publish",
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "release": "lerna publish",
-    "prepublishOnly": "npm run test",
-    "check-package-updates": "ncu -u && gulp updatePackages"
-  },
-  "devDependencies": {
-    "@hokify/eslint-config": "^2.2.1",
-    "@types/mocha": "9.0.0",
-    "@types/node": "16.11.9",
-    "lerna": "^4.0.0",
-    "mocha": "9.1.3",
-    "ts-node": "10.4.0",
-    "typescript": "4.5.2"
-  },
-  "dependencies": {
-    "del": "^6.0.0",
-    "glob": "^7.2.0",
-    "gulp": "^4.0.2",
-    "prettier": "^2.4.1"
-  }
+	"name": "root",
+	"private": true,
+	"scripts": {
+		"publish": "lerna publish",
+		"build": "lerna run build",
+		"test": "lerna run test",
+		"release": "lerna publish",
+		"prepublishOnly": "npm run test",
+		"check-package-updates": "ncu -u && gulp updatePackages"
+	},
+	"devDependencies": {
+		"@hokify/eslint-config": "^2.2.1",
+		"@types/mocha": "9.0.0",
+		"@types/node": "16.11.9",
+		"lerna": "^4.0.0",
+		"mocha": "9.1.3",
+		"ts-node": "10.4.0",
+		"typescript": "4.5.2"
+	},
+	"dependencies": {
+		"del": "^6.0.0",
+		"glob": "^7.2.0",
+		"gulp": "^4.0.2",
+		"prettier": "^2.4.1"
+	},
+	"workspaces": [
+		"storages/*",
+		"ts-cache"
+	]
 }
