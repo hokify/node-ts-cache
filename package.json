@@ -13,7 +13,7 @@
 		"@hokify/eslint-config": "^2.2.1",
 		"@types/mocha": "9.0.0",
 		"@types/node": "16.11.9",
-		"lerna": "^4.0.0",
+		"lerna": "^7.1.1",
 		"mocha": "9.1.3",
 		"ts-node": "10.4.0",
 		"typescript": "4.5.2"
