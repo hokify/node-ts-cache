@@ -49,11 +49,10 @@
   "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/lru-redis#readme",
   "dependencies": {
     "@hokify/node-ts-cache": "^6.0.0",
-    "ioredis": "^4.28.0",
+    "ioredis": "^5.3.2",
     "lru-cache": "^6.0.0"
   },
   "devDependencies": {
-    "@types/ioredis": "^4.28.1",
     "@types/lru-cache": "^5.1.1",
     "ioredis-mock": "^5.8.0"
   },
