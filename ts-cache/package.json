@@ -1,60 +1,59 @@
 {
-  "name": "@hokify/node-ts-cache",
-  "version": "6.0.0",
-  "description": "Simple and extensible caching module supporting decorators",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "publishConfig": {
-    "access": "public"
-  },
-  "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "scripts": {
-    "test": "mocha --loader=ts-node/esm test/**/*.test.ts",
-    "tdd": "mocha --loader=ts-node/esm -w",
-    "tdd-debug-brk": "mocha --loader=ts-node/esm --inspect-brk",
-    "build": "tsc -p .",
-    "prepublishOnly": "tsc -p .",
-    "clean": "git clean -fdx src",
-    "dev": "tsc -p . -w"
-  },
-  "devDependencies": {
-    "ioredis": "^5.3.2",
-    "ioredis-mock": "^8.9.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hokify/node-ts-cache.git"
-  },
-  "keywords": [
-    "node",
-    "nodejs",
-    "cache",
-    "typescript",
-    "ts",
-    "caching",
-    "memcache",
-    "memory-cache",
-    "redis-cache",
-    "redis",
-    "cache",
-    "file-cache",
-    "node-cache",
-    "ts-cache"
-  ],
-  "files": [
-    "dist"
-  ],
-  "author": "Simon Tretter <simon.tretter@hokify.com>",
-  "contributors": [
-    "Himmet Avsar <avsar.himmet1@gmail.com>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hokify/node-ts-cache/issues"
-  },
-  "homepage": "https://github.com/hokify/node-ts-cache/tree/master/ts-cache#readme",
-  "gitHead": "c938eba762060f940a34bc192bec03bc76ea4017"
+	"name": "@hokify/node-ts-cache",
+	"version": "6.0.1",
+	"description": "Simple and extensible caching module supporting decorators",
+	"keywords": [
+		"node",
+		"nodejs",
+		"cache",
+		"typescript",
+		"ts",
+		"caching",
+		"memcache",
+		"memory-cache",
+		"redis-cache",
+		"redis",
+		"file-cache",
+		"node-cache",
+		"ts-cache"
+	],
+	"homepage": "https://github.com/hokify/node-ts-cache/tree/master/ts-cache#readme",
+	"bugs": {
+		"url": "https://github.com/hokify/node-ts-cache/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hokify/node-ts-cache.git"
+	},
+	"license": "MIT",
+	"author": "Simon Tretter <simon.tretter@hokify.com>",
+	"contributors": [
+		"Himmet Avsar <avsar.himmet1@gmail.com>"
+	],
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p .",
+		"clean": "git clean -fdx src",
+		"dev": "tsc -p . -w",
+		"prepublishOnly": "tsc -p .",
+		"tdd": "mocha --loader=ts-node/esm -w",
+		"tdd-debug-brk": "mocha --loader=ts-node/esm --inspect-brk",
+		"test": "mocha --loader=ts-node/esm test/**/*.test.ts"
+	},
+	"devDependencies": {
+		"ioredis": "^5.3.2",
+		"ioredis-mock": "^8.9.0"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "c938eba762060f940a34bc192bec03bc76ea4017"
 }

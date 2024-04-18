@@ -1,58 +1,57 @@
 {
-  "name": "@hokify/node-ts-cache-node-cache-storage",
-  "version": "2.0.0",
-  "publishConfig": {
-    "access": "public"
-  },
-  "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "description": "Simple and extensible caching module supporting decorators",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "mocha --loader=ts-node/esm test/**/*.test.ts",
-    "build": "tsc -p .",
-    "prepublishOnly": "tsc -p .",
-    "clean": "git clean -fdx src",
-    "dev": "tsc -p . -w"
-  },
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hokify/node-ts-cache.git"
-  },
-  "keywords": [
-    "node",
-    "nodejs",
-    "cache",
-    "typescript",
-    "ts",
-    "caching",
-    "memcache",
-    "memory-cache",
-    "redis-cache",
-    "redis",
-    "cache",
-    "file-cache",
-    "node-cache",
-    "ts-cache"
-  ],
-  "files": [
-    "dist"
-  ],
-  "author": "Simon Tretter <s.tretter@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hokify/node-ts-cache/issues"
-  },
-  "homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/node-cache#readme",
-  "dependencies": {
-    "node-cache": "^5.1.2"
-  },
-  "devDependencies": {
-    "@hokify/node-ts-cache": "^6.0.0",
-    "@types/node-cache": "^4.2.5"
-  },
-  "gitHead": "c938eba762060f940a34bc192bec03bc76ea4017"
+	"name": "@hokify/node-ts-cache-node-cache-storage",
+	"version": "2.0.1",
+	"description": "Simple and extensible caching module supporting decorators",
+	"keywords": [
+		"node",
+		"nodejs",
+		"cache",
+		"typescript",
+		"ts",
+		"caching",
+		"memcache",
+		"memory-cache",
+		"redis-cache",
+		"redis",
+		"file-cache",
+		"node-cache",
+		"ts-cache"
+	],
+	"homepage": "https://github.com/hokify/node-ts-cache/tree/master/storages/node-cache#readme",
+	"bugs": {
+		"url": "https://github.com/hokify/node-ts-cache/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hokify/node-ts-cache.git"
+	},
+	"license": "MIT",
+	"author": "Simon Tretter <s.tretter@gmail.com>",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p .",
+		"clean": "git clean -fdx src",
+		"dev": "tsc -p . -w",
+		"prepublishOnly": "tsc -p .",
+		"test": "mocha --loader=ts-node/esm test/**/*.test.ts"
+	},
+	"dependencies": {
+		"node-cache": "^5.1.2"
+	},
+	"devDependencies": {
+		"@hokify/node-ts-cache": "^6.0.1",
+		"@types/node-cache": "^4.2.5"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "c938eba762060f940a34bc192bec03bc76ea4017"
 }
