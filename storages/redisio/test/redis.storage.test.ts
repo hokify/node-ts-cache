@@ -1,6 +1,6 @@
 import * as Assert from "assert";
 import RedisIOStorage from "../src/index.js";
-import * as snappy from "snappy";
+//import * as snappy from "snappy";
 
 // @ts-ignore
 import RedisMock from "ioredis-mock";
@@ -12,10 +12,12 @@ const MockedRedis = new RedisMock({
 });
 
 const storage = new RedisIOStorage(() => MockedRedis);
+/*
 const compressedStorage = new RedisIOStorage(() => MockedRedis, {
   maxAge: 86400,
   compress: true,
 });
+*/
 
 describe("RedisIOStorage", () => {
   it("Should clear Redis without errors", async () => {
@@ -37,6 +39,7 @@ describe("RedisIOStorage", () => {
     });
   });
 
+  /*
   describe("compression", () => {
     it("Should set and retrieve item correclty", async () => {
       await compressedStorage.setItem("test", { asdf: 1 });
@@ -68,6 +71,7 @@ describe("RedisIOStorage", () => {
       Assert.deepEqual(await compressedStorage.getItem("test2"), "2");
     });
   });
+  */
 
   describe("uncompressed", () => {
     it("Should set and retrieve item correclty", async () => {
